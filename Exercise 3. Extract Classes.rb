@@ -21,19 +21,7 @@ class TipsProcessor
   end
 
   def total_amount
-    form.amount + tax - discount + tip
-  end
-
-  def tax
-    form.amount * TAX
-  end
-
-  def discount
-    form.amount * (form.discount_percentage / 100.0)
-  end
-
-  def tip
-    form.amount * (form.tip_percentage / 100.0)
+    TipsCalculator.new(form: form).call
   end
 
 end
