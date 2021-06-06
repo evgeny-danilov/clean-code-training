@@ -22,9 +22,11 @@ Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-co
 
 ## Exercise #3: Extract Classes
 
-When class becomes bigger, it starts to violate SOLID principles, and turns into a mess of code, that is difficult to understand. To make our live easier and out code more flexible, we can extract some tightly-coupled functionality into a separate class. It gives us an additional dimension, so that you can move not only from top to bottom of a single file, but accross a few files as well. Moreover, it helps you to hide some details, like "Extract Methods" refactoring does, and additionaly provides a new type of flexibility. In particular, when we have a separate class, it's much easier to move this part of functionality, for instance, by introducing Dependency Injection. Or, to add new behaviour, for instance, by introducing Strategy Pattern (these techniquecs in details will be described in the exercises below).
+When class becomes bigger, it starts to violate SOLID principles, and turns into a mess of code, that is difficult to understand. To make our live easier and out code more flexible, we can extract some tightly-coupled functionality into a separate class. It gives us an additional dimension, so that you can move not only from top to bottom of a single file, but accross a few files as well. 
 
-Solution: Check out [feature branch changes](TODO)
+Moreover, it helps you to hide some details, like "Extract Methods" refactoring does, and additionaly provides a new type of flexibility. In particular, when we have a separate class, it's much easier to move this part of functionality, for instance, by introducing Dependency Injection. Or, to add new behaviour, for instance, by introducing Strategy Pattern (these techniquecs in details will be described in the exercises below).
+
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex3-extract-classes)
 
 # Links
 
