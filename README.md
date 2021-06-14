@@ -35,7 +35,7 @@ The first thing developers tend to use is applying `if` / `case` statements for 
 Here is a few examples of what we can do:
 
 Example #1: [Apply DeMorgan Laws](https://github.com/jmelkor/clean-code-training/compare/ex4a-de-morgan-laws)
-Example #2: [Extract Conditions](TODO)
+Example #2: [Extract Conditions](https://github.com/jmelkor/clean-code-training/compare/ex4b-extract-conditions)
 Example #3: [Remove IF Statements](TODO)
 
 # Links
