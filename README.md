@@ -40,6 +40,12 @@ Example #2: [Extract Conditions](https://github.com/jmelkor/clean-code-training/
 
 Example #3: [Remove IF Statements](https://github.com/jmelkor/clean-code-training/compare/ex4c-remove-if-statements)
 
+# Training tasks
+If you want to apply these techniques in real code, feel free to pick up these tasks and implement our own solution
+
+Task #1: [Bottled Water Delivery](https://github.com/jmelkor/clean-code-training/tree/main/training-tasks/bottled_water_delivery) service
+
+
 # Links
 
 1. ThoughtBot articles [with 'Clean Code' tag](https://thoughtbot.com/upcase/clean-code)
