@@ -28,7 +28,7 @@ Moreover, it helps us to hide some details, like "Extract Methods'' refactoring 
 
 Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex3-extract-classes)
 
-## Exercise #4 IF Statements refactoring
+## Exercise #4: IF Statements refactoring
 
 The first thing developers tend to use is applying `if` / `case` statements for business logic. However, the further we go, the more conditions we have. Eventually, we end up with absolutely unreadable and mind-blowing code.
 
@@ -39,6 +39,13 @@ Example #1: [Apply DeMorgan Laws](https://github.com/jmelkor/clean-code-training
 Example #2: [Extract Conditions](https://github.com/jmelkor/clean-code-training/compare/ex4b-extract-conditions)
 
 Example #3: [Remove IF Statements](https://github.com/jmelkor/clean-code-training/compare/ex4c-remove-if-statements)
+
+
+## Exercise #6: Replace Conditionals
+
+There are additional techniques to reduce count of `if` statements in order to keep the code extensible and to maintain Open-Close principle:
+
+Example #1: [Replace Conditionals With Constant Hash](TODO)
 
 # Training tasks
 If you want to apply these techniques in real code, feel free to pick up these tasks and implement our own solution
