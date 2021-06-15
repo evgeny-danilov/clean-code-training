@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 def call
-  if address.start_with?('Minsk')
-    'Minsk'
-  elsif address.start_with?('Berlin')
-    'Berlin'
+  ['Minsk', 'Berlin'].detect do |city_name|
+    address.start_with?(city_name)
   end
 end
