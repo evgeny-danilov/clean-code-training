@@ -45,7 +45,11 @@ Example #3: [Remove IF Statements](https://github.com/jmelkor/clean-code-trainin
 
 There are additional techniques to reduce count of `if` statements in order to keep the code extensible and to maintain Open-Close principle:
 
-Example #1: [Replace Conditionals With Constant Hash](TODO)
+Example #1: [Replace Conditionals With Constant Hash](https://github.com/jmelkor/clean-code-training/compare/ex6a-replace-conditionals-with-hash)
+
+Example #2: [Replace Conditionals With Constant Strategies](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v1)
+
+In some cases it could be like [this way](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v2)
 
 # Training tasks
 If you want to apply these techniques in real code, feel free to pick up these tasks and implement our own solution
