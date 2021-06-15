@@ -45,8 +45,3 @@ Find the closest available slot for delivering. Calculation depends on the desir
 
 ## Tools & Approaches
 - *Rspec*
-
-## Links
- - Practical Object-Oriented Design (2nd edition): https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1
- - 99 BOTTLES OF OOP (2nd edition): https://sandimetz.com/99bottles
- - The Clean Code Blog by Robert C. Martin: https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html

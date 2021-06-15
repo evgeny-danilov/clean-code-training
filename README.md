@@ -49,5 +49,6 @@ Task #1: [Bottled Water Delivery](https://github.com/jmelkor/clean-code-training
 # Links
 
 1. ThoughtBot articles [with 'Clean Code' tag](https://thoughtbot.com/upcase/clean-code)
-2. [Code complete](https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670) by Steve McConnel. Rus edition: [Совершенный код](https://www.ozon.ru/context/detail/id/140250413/)
+2. [Code complete](https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670) by Steve McConnel (russian edition: [Совершенный код](https://www.ozon.ru/context/detail/id/140250413/)).
 3. [99 Bottles of OOP](https://sandimetz.com/99bottles) by Sandy Meiz
+4. [Practical Object-Oriented Design (2nd edition)](https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1)  by Sandy Meiz
