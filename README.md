@@ -6,7 +6,7 @@
 
 An explaining variable is a variable whose name describes the purpose of the expression we're assigning to it. It's used to help break down longer, more complex expressions, making the final expression more manageable and easier to understand.
 
-Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex1-extract-variables)
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex1-extract-variables?diff=split)
 
 ## Exercise #2: Extract Private Methods
 
@@ -18,7 +18,7 @@ Keep in mind, this technique is more convenient (and sometimes even possible) on
 
 Another tip would be to keep our private methods as "clean functions". It prevents possible side effects and improves the readability of the code.
 
-Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex2-extract-methods)
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex2-extract-methods?diff=split)
 
 ## Exercise #3: Extract Classes
 
@@ -26,38 +26,38 @@ When class becomes bigger, it starts to violate SOLID principles, and turns into
 
 Moreover, it helps us to hide some details, like "Extract Methods'' refactoring does, and additionally provides a new type of flexibility. In particular, when we have a separate class, it's much easier to move this part of functionality, for instance, by introducing Dependency Injection. Or, to add new behaviour, for instance, by introducing Strategy Pattern (these techniques in detail will be described in the exercises below).
 
-Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex3-extract-classes)
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex3-extract-classes?diff=split)
 
 ## Exercise #4: IF Statements refactoring
 
-The first thing developers tend to use is applying `if` / `case` statements for business logic. However, the further we go, the more conditions we have. Eventually, we end up with absolutely unreadable and mind-blowing code.
+The first thing developers tend to use is applying `if` / `case` statements for business logic. However, the further we go, the more conditions we have. Eventually, we end up with absolutely unreadable and mind-blowing code. Every level of conditional nesting in a code forces readers to hold more mental context in the head.
 
 Here is a few examples of what we can do:
 
-Example #1: [Apply DeMorgan Laws](https://github.com/jmelkor/clean-code-training/compare/ex4a-de-morgan-laws)
+Example #1: [Apply DeMorgan Laws](https://github.com/jmelkor/clean-code-training/compare/ex4a-de-morgan-laws?diff=split)
 
-Example #2: [Extract Conditions](https://github.com/jmelkor/clean-code-training/compare/ex4b-extract-conditions)
+Example #2: [Extract Conditions](https://github.com/jmelkor/clean-code-training/compare/ex4b-extract-conditions?diff=split)
 
-Example #3: [Remove IF Statements](https://github.com/jmelkor/clean-code-training/compare/ex4c-remove-if-statements)
+Example #3: [Replace `if` statements with guard clause](https://github.com/jmelkor/clean-code-training/compare/ex4c-remove-if-statements?diff=split)
 
 ## Exercise #5: Depenedency Injection
 
-By applying Depenedency Injection technique we satisfy Open-Close principle, and make the code more flexible and convenient for adding new behaviour. However, don't overuse this technique when there is only one class-dependency, will relevants only for some part of the code (let's say, boundary context). So, sometimes it's better to violate DRY (dont' repeat yourself), but keep your code less coupled.
+This technique is that we don't hardcode dependencies, but pass them as parameters into the class. By applying Dependency Injection we satisfy the Open-Close principle, and make the code loose couplied, e.g. more flexible in terms of changing the behaviour. However, don't overuse this technique when there is only one class-dependency, which will be relevant only for some part of the code (let's say, boundary context). So, sometimes it's better to violate DRY (don't repeat yourself), but keep your code less coupled.
 
-Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex5-dependency-injection)
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex5-dependency-injection?diff=split)
 
 ## Exercise #6: Replace Conditionals
 
 There are additional techniques to reduce count of `if` statements in order to keep the code extensible and to maintain Open-Close principle:
 
-Example #1: [Replace Conditionals With Constant Hash](https://github.com/jmelkor/clean-code-training/compare/ex6a-replace-conditionals-with-hash)
+Example #1: [Replace Conditionals With Constant Hash](https://github.com/jmelkor/clean-code-training/compare/ex6a-replace-conditionals-with-hash?diff=split)
 
-Example #2: [Replace Conditionals With Constant Strategies](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v2), or, in some cases it could be like [this way](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v1)
+Example #2: [Replace Conditionals With Constant Strategies](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v2?diff=split), or, in some cases it could be like [this way](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v1?diff=split)
 
 # Training tasks
 If you want to apply these techniques in real code, feel free to pick up these tasks and implement our own solution
 
-Task #1: [Bottled Water Delivery](https://github.com/jmelkor/clean-code-training/tree/main/training-tasks/bottled_water_delivery) service
+Task #1: [Bottled Water Delivery](https://github.com/jmelkor/clean-code-training/tree/main/training-tasks/bottled_water_delivery?diff=split) service
 
 
 # Links
