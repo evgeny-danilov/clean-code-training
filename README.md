@@ -40,6 +40,11 @@ Example #2: [Extract Conditions](https://github.com/jmelkor/clean-code-training/
 
 Example #3: [Remove IF Statements](https://github.com/jmelkor/clean-code-training/compare/ex4c-remove-if-statements)
 
+## Exercise #5: Depenedency Injection
+
+By applying Depenedency Injection technique we satisfy Open-Close principle, and make the code more flexible and convenient for adding new behaviour. However, don't overuse this technique when there is only one class-dependency, will relevants only for some part of the code (let's say, boundary context). So, sometimes it's better to violate DRY (dont' repeat yourself), but keep your code less coupled.
+
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex5-dependency-injection)
 
 ## Exercise #6: Replace Conditionals
 
