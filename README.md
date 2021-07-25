@@ -54,6 +54,12 @@ Example #1: [Replace Conditionals With Constant Hash](https://github.com/jmelkor
 
 Example #2: [Replace Conditionals With Constant Strategies](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v2?diff=split), or, in some cases it could be like [this way](https://github.com/jmelkor/clean-code-training/compare/ex6b-replace-conditionals-with-strategies-v1?diff=split)
 
+## Exercise #7: Mixins refactoring
+
+Keep in mind, that having mixins is almost always not a good idea, because it brings a lot of Mystery Guests and leads to unexpected behaviour. However, if you desided to use mixins, it's better to hide the implementation into inner classes, so as not to pollute the namespace of method names in a target class.
+
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex7-mixins-refactoring?diff=split)
+
 # Training tasks
 If you want to apply these techniques in real code, feel free to pick up these tasks and implement our own solution
 
@@ -63,6 +69,7 @@ Task #1: [Bottled Water Delivery](https://github.com/jmelkor/clean-code-training
 # Links
 
 1. ThoughtBot articles [with 'Clean Code' tag](https://thoughtbot.com/upcase/clean-code)
-2. [Code complete](https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670) by Steve McConnel (russian edition: [Совершенный код](https://www.ozon.ru/context/detail/id/140250413/)).
-3. [99 Bottles of OOP](https://sandimetz.com/99bottles) by Sandy Meiz
-4. [Practical Object-Oriented Design (2nd edition)](https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1)  by Sandy Meiz
+2. [99 Bottles of OOP](https://sandimetz.com/99bottles) by Sandy Meiz
+3. [Code complete](https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670) by Steve McConnel (russian edition: [Совершенный код](https://www.ozon.ru/context/detail/id/140250413/)).
+4. [Confident Ruby](https://pragprog.com/titles/agcr/confident-ruby/) by Avdi Grimm
+5. [Practical Object-Oriented Design (2nd edition)](https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1)  by Sandy Meiz
