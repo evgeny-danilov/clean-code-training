@@ -12,9 +12,9 @@ Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-co
 
 By extracting the functionality into private methods we get short and self-explained public methods. So, if developers or readers need more information about details, they could dive into the private section.
 
-Another benefit of private methods against just local methods is that private methods are more flexible in terms of making additional changes or further refactoring. However, keeping the right balance between local variables and private methods is important for readability. Sometimes Rubocop could advise us to apply this technique, but most of the time we rely on our intuition and try to look at the code as an external reader, who barely knows the functionality.
+Another benefit of private methods against just local methods is that private methods are more flexible in terms of making additional changes or further refactoring. However, keeping the right balance between local variables and private methods is important for readability. Sometimes Rubocop could advise us to apply this technique, but most of the time we rely on our intuition and try to look at the code as an external reader, who barely knows the functionality (for more infomation, check out [The Local Variable Aversion Antipattern](https://www.soulcutter.com/articles/local-variable-aversion-antipattern.html))
 
-Keep in mind, this technique is more convenient (and sometimes even possible) only in case our class has input parameters, coming through the initializer and defining it as instance variables / getters (`attr_reader`).
+Keep in mind, extracting private methods is more convenient (and sometimes even possible) only in case our class has input parameters, coming through the initializer and defining it as instance variables / getters (`attr_reader`).
 
 Another tip would be to keep our private methods as "clean functions". It prevents possible side effects and improves the readability of the code.
 
@@ -27,6 +27,10 @@ When class becomes bigger, it starts to violate SOLID principles, and turns into
 Moreover, it helps us to hide some details, like "Extract Methods'' refactoring does, and additionally provides a new type of flexibility. In particular, when we have a separate class, it's much easier to move this part of functionality, for instance, by introducing Dependency Injection. Or, to add new behaviour, for instance, by introducing Strategy Pattern (these techniques in detail will be described in the exercises below).
 
 Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex3-extract-classes?diff=split)
+
+**Drawbacks:** extracting classes decrease the complexity of the original class, but increase the overall complexity of the application. Besides, too many classes could lead to cyclomatic dependencies. All this means that more classes require developers to be more cautious, and the application architecture to be more strict, in order to force only one-way dependencies. 
+
+So, If you extract classes in response to pain and resistance, you’ll end up with just the right number of classes and names.
 
 ## Exercise #4: IF Statements refactoring
 
@@ -56,14 +60,31 @@ Example #2: [Replace Conditionals With Constant Strategies](https://github.com/j
 
 ## Exercise #7: Mixins refactoring
 
-Keep in mind, that having mixins is almost always not a good idea, because it brings a lot of Mystery Guests and leads to unexpected behaviour. However, if you desided to use mixins, it's better to hide the implementation into inner classes, so as not to pollute the namespace of method names in a target class.
+Keep in mind that having mixins is almost always not a good idea, because it brings a lot of Mystery Guests and Cycle Dependencies, and leads to unexpected behaviour. For sure, better way would be to extract some functionality to a new class, which can be instantiated. However, if you desire to use mixins, it's better to hide implementation details in inner class, so as not to pollute the namespace of method names in a target class.
 
 Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex7-mixins-refactoring?diff=split)
 
-# Training tasks
-If you want to apply these techniques in real code, feel free to pick up these tasks and implement our own solution
+## Exercise #8: Form Objects
 
-Task #1: [Bottled Water Delivery](https://github.com/jmelkor/clean-code-training/tree/main/training-tasks/bottled_water_delivery?diff=split) service
+Value Objects provide the way to compact input params into one single Ruby object (PORO). An evolution of Value Objects are Form Objects. They provide more features to validate params and form error messages. Sometimes Form Objects include saving objects in DB, but we consider it as bad practice (working with DB is actually the area of Repositories).
+
+So, Form Objects could be useful for:
+- receiving inputs from web-forms
+- parsing date from outside and generating the result
+- communication between internal domains or external microservices
+- transferring the set of parameters between classes within a domain / feature
+
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex8a-form-objects?diff=split)
+
+
+
+## PART 2 - DESIGN PATTERNS
+
+...coming soon
+
+## PART 3 - RAILS APP DESIGN
+
+ 
 
 
 # Links
@@ -73,3 +94,4 @@ Task #1: [Bottled Water Delivery](https://github.com/jmelkor/clean-code-training
 3. [Code complete](https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670) by Steve McConnel (russian edition: [Совершенный код](https://www.ozon.ru/context/detail/id/140250413/)).
 4. [Confident Ruby](https://pragprog.com/titles/agcr/confident-ruby/) by Avdi Grimm
 5. [Practical Object-Oriented Design (2nd edition)](https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1)  by Sandy Meiz
+6. [The Local Variable Aversion Antipattern](https://www.soulcutter.com/articles/local-variable-aversion-antipattern.html)
