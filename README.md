@@ -46,13 +46,15 @@ Example #3: [Replace `if` statements with guard clause](https://github.com/jmelk
 
 ## Exercise #5: Depenedency Injection
 
-This technique is that we don't hardcode dependencies, but pass them as parameters into the class. By applying Dependency Injection we satisfy the Open-Close principle, and make the code loose couplied, e.g. more flexible in terms of changing the behaviour. However, don't overuse this technique when there is only one class-dependency, which will be relevant only for some part of the code (let's say, boundary context). So, sometimes it's better to violate DRY (don't repeat yourself), but keep your code less coupled.
+This technique is that we don't hardcode dependencies, but pass them as parameters into the class. By applying Dependency Injection we satisfy the Open-Close principle, and make the code loose couplied, e.g. more flexible in terms of changing the behaviour.
+
+In particulary, with this technique we move the dependency decision to a higher level component and remove any sub-dependencies from the lower level component. However, it’s important to remember that the further you move a dependency’s resolution from its use, the harder it is to figure out what’s actually being used in lower level components. Another thing you should know is that DI doesn't make a lot of sense, when there is always only one dependent class (e.g. we don't choose which class to inject). In fact, there are another solutions to manage tightly-coupled classes, and most of these solutions are comming from DDD.
 
 Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex5-dependency-injection?diff=split)
 
 ## Exercise #6: Replace Conditionals
 
-There are additional techniques to reduce count of `if` statements in order to keep the code extensible and to maintain Open-Close principle:
+There are additional techniques to reduce count of `if` statements in order to keep the code extensible and follow Open-Close principle:
 
 Example #1: [Replace Conditionals With Constant Hash](https://github.com/jmelkor/clean-code-training/compare/ex6a-replace-conditionals-with-hash?diff=split)
 
@@ -66,7 +68,7 @@ Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-co
 
 ## Exercise #8: Form Objects
 
-Value Objects provide the way to compact input params into one single Ruby object (PORO). An evolution of Value Objects are Form Objects. They provide more features to validate params and form error messages. Sometimes Form Objects include saving objects in DB, but we consider it as bad practice (working with DB is actually the area of Repositories).
+Value Objects provide the way to compact input params into one single Ruby object (PORO). An evolution of Value Objects are Form Objects. They provide more features to validate params and form error messages. Sometimes Form Objects include saving objects in DB, but we consider it as bad practice (working with DB is actually the area of Repositories / Query Objects).
 
 So, Form Objects could be useful for:
 - receiving inputs from web-forms
@@ -76,7 +78,13 @@ So, Form Objects could be useful for:
 
 Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex8a-form-objects?diff=split)
 
+## Exercise #9: Prefer Simple code over Beautiful
 
+Beautiful and short code doesn't always mean it's readablility. At the same time, more code lines can be more expressive. Some developers tend to dry out and cut the code, forgetting that people will have to put extra effort to understand. Besides, having less code often means reader should keep extra elements in short-term memory (some researchs shows people have only 5-7 slots in short-term memory to keep some independent elements there).
+
+There are a lot of solutions and examples. Check out [one of them](https://github.com/jmelkor/clean-code-training/compare/ex9a-simplicitly-over-beauty?diff=split) - after this refactoring there are less variables, and we return from the method as soon as possible.
+
+Other solution shows adding more variables to reduce less-readable functional styling. Check the [second example](https://github.com/jmelkor/clean-code-training/compare/ex9b-reduce-functional-styling?diff=split) - after the refactoring we get more expressive elements. Besides, it gives us the posibility to debub the code in more confinient way.
 
 ## PART 2 - DESIGN PATTERNS
 
