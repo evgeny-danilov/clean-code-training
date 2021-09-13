@@ -78,13 +78,13 @@ So, Form Objects could be useful for:
 
 Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex8a-form-objects?diff=split)
 
-## Exercise #9: Prefer Simple code over Beautiful
+## Exercise #9: Prefer Simple code over Beautiful one
 
-Beautiful and short code doesn't always mean it's readablility. At the same time, more code lines can be more expressive. Some developers tend to dry out and cut the code, forgetting that people will have to put extra effort to understand. Besides, having less code often means reader should keep extra elements in short-term memory (some researchs shows people have only 5-7 slots in short-term memory to keep some independent elements there).
+Short and beautiful code doesn't always mean it will be expressive and maintainable. Some developers tend to dry out and cut the code, forgetting that other people will have to put extra effort to understand it. In some cases, having less code means readers should keep extra hidden elements in mind (some research shows people have only 5-7 slots in short-term memory to keep some independent elements there).
 
 There are a lot of solutions and examples. Check out [one of them](https://github.com/jmelkor/clean-code-training/compare/ex9a-simplicitly-over-beauty?diff=split) - after this refactoring there are less variables, and we return from the method as soon as possible.
 
-Other solution shows adding more variables to reduce less-readable functional styling. Check the [second example](https://github.com/jmelkor/clean-code-training/compare/ex9b-reduce-functional-styling?diff=split) - after the refactoring we get more expressive elements. Besides, it gives us the posibility to debub the code in more confinient way.
+In a contrary, another solution shows adding more variables to reduce less-readable functional styling. Check the [second example](https://github.com/jmelkor/clean-code-training/compare/ex9b-reduce-functional-styling?diff=split) - after this refactoring we get more expressive elements, and it gives us the possibility to debug the code in a more convenient way.
 
 ## PART 2 - DESIGN PATTERNS
 
