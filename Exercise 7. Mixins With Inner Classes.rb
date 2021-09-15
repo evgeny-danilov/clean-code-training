@@ -1,11 +1,21 @@
 # frozen_string_literal: true
 
-module Mixin
-  def you_method
-    something + 3
+class UserController < ApplicationController
+  include UserCalculations
+
+  def new
+    @user = User.find(params[:id])
+    @payload = user_calculation
+  end
+end
+
+# app/controllers/concerns/user_calculations.rb
+module UserCalculations
+  def user_calculation
+    user_amount * 3
   end
 
-  def something
-    199
+  def user_amount
+    @user.amount
   end
 end
