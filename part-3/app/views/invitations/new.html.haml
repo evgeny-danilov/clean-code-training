@@ -7,9 +7,9 @@
 
   = f.input :recipients, as: :text, input_html: { value: @recipients }
 
-  - if @invalid_recipients
+  - if invalid_recipients
     %div.error
       Invalid email addresses: 
-      = @invalid_recipients.join(', ')
+      = invalid_recipients.join(', ')
 
   = f.submit 'Notify Recipients'
