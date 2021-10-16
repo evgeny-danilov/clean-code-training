@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class AdminMailer < ApplicationMailer
+class Mailer < ApplicationMailer
   def invitation_notification(invitation, comment)
-    
+    # do something
   end
 end
