@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
           recipient_email: email,
           status: 'pending'
         )
-        Mailer.invitation_notification(invitation, comment)
+        Mailer.invitation_notification(invitation, comment).deliver_now
       end
 
       redirect_to report_path(@report), notice: 'Invitation successfully sent'
