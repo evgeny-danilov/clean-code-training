@@ -2,7 +2,7 @@
 
 class ReportsController < ApplicationController
   EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-  
+
   def new
     @report = Report.find(params[:id])
   end
@@ -19,16 +19,16 @@ class ReportsController < ApplicationController
           status: 'pending'
         )
         Mailer.invitation_notification(invitation, comment)
-     end
+      end
 
-     redirect_to report_path(@report), notice: 'Invitation successfully sent'
-   else
-     @recipients = recipients
-     @comment = comment
-     @missing_comment = true unless valid_comment
+      redirect_to report_path(@report), notice: 'Invitation successfully sent'
+    else
+      @recipients = recipients
+      @comment = comment
+      @missing_comment = true unless valid_comment
 
-     render :new
-   end
+      render :new
+    end
   end
 
   private

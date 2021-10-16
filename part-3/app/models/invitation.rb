@@ -3,7 +3,6 @@
 class Invitation < ApplicationRecord
 end
 
-
 # == Schema Info
 #
 # Table name: invitations
