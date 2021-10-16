@@ -92,7 +92,7 @@ In a contrary, another solution shows adding more variables to reduce less-reada
 
 ## PART 3 - RAILS APP DESIGN
 
- The most common way to refactor Rails apps is hidden functionality to models and concerns. Check out our [bad example of refactoring](https://github.com/jmelkor/clean-code-training/compare/ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with > 5000 line models and dozens of mixins with circle dependencies. And further extracting the functionality to separate services becomes almost impossible. 
+ The most common way to refactor Rails apps is hidden functionality to models and concerns. Check out our [bad example of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with > 5000 line models and dozens of mixins with circle dependencies. And further extracting the functionality to separate services becomes almost impossible. 
 
 
 # Links
