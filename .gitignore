@@ -1,0 +1,8 @@
+
+/part-3/rails-app/tmp/*
+/part-3/rails-app/log/*
+
+
+/part-3/rails-app/config/master.key
+/part-3/rails-app/config/.byebug_history
+
