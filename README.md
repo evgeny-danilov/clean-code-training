@@ -92,7 +92,15 @@ In a contrary, another solution shows adding more variables to reduce less-reada
 
 ## PART 3 - RAILS APP DESIGN
 
- The most common way to refactor Rails apps is hidden functionality to models and concerns. Check out our [bad example of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with > 5000 line models and dozens of mixins with circle dependencies. And further extracting the functionality to separate services becomes almost impossible. 
+The most common way to refactor Rails apps is hidden functionality to models, callbacks and concerns. Check out our [BAD EXAMPLE of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with more that 5000 lines in models and dozens of mixins with circle dependencies. And further extracting the functionality to separate services becomes almost impossible. 
+
+If you are doubt where to put business logic, it's better to keet it in controllers. At least, it will be much easier to extract the functionality to separate well-organized services and modules. 
+
+We have [basic example](https://github.com/jmelkor/clean-code-training/tree/main/part-3/app), which has exacty the same -- all the logic places in the controller. However, this controller is overload and violates SOLID principles. So, let's try to refactor it step-by-step:
+
+Step #1: Extract presentation logic in view context. Check out [feature branch changes](TODO)
+
+TODO: https://nshki.com/giving-ruby-objects-access-to-rails-view-methods/
 
 
 # Links
