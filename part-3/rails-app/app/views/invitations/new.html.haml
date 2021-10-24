@@ -1,16 +1,16 @@
 = simple_form_for :invitation, url: invitations_path(@report) do |f|
-  = f.input :comment, as: :text, input_html: { value: @comment }
+  = f.input :comment, as: :text, input_html: { value: form.comment }
 
-  - if @missing_comment
+  - if form_errors&.error?(:comment)
     %div.error
       Please provide a comment for the report recipients
 
-  = f.input :recipients, as: :text, input_html: { value: @recipients }
+  = f.input :recipients, as: :text, input_html: { value: form.recipients&.join(', ') }
 
-  - if @invalid_recipients
+  - if form_errors&.error?(:recipients)
     %div.error
       Invalid email addresses: 
-      = @invalid_recipients.join(', ')
+      = form.invalid_recipients.join(', ')
 
   = f.submit 'Notify Recipients'
 
