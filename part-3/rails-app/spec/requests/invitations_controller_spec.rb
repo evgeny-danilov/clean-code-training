@@ -17,7 +17,9 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
       report = Report.create
       invitation_params = { comment: '', recipients: '' }
 
-      post '/invitations', params: { report_id: report.id, invitation: invitation_params }
+      expect {
+        post '/invitations', params: { report_id: report.id, invitation: invitation_params }
+      }.not_to have_enqueued_job
 
       expect(response.status).to eq(200)
       expect(response.body).to include('Invalid email addresses')
@@ -29,7 +31,9 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
         report = Report.create
         invitation_params = { comment: 'a comment', recipients: 'test@mail.com' }
 
-        post '/invitations', params: { report_id: report.id, invitation: invitation_params }
+        expect {
+          post '/invitations', params: { report_id: report.id, invitation: invitation_params }
+        }.to have_enqueued_job.on_queue('default')
 
         expect(response.status).to eq(302)
       end
@@ -40,7 +44,9 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
         report = Report.create
         invitation_params = { comment: 'a comment', recipients: 'test@mail.com, my_mail' }
 
-        post '/invitations', params: { report_id: report.id, invitation: invitation_params }
+        expect {
+          post '/invitations', params: { report_id: report.id, invitation: invitation_params }
+        }.not_to have_enqueued_job
 
         expect(response.status).to eq(200)
         expect(response.body).to include("Invalid email addresses: my_mail", 'a comment')

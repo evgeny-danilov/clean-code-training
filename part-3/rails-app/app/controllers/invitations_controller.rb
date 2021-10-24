@@ -11,6 +11,7 @@ class InvitationsController < ApplicationController
 
   def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @report = Report.find(params[:report_id])
+
     result = form.result_object(validate: true)
 
     if result.validation.success?
@@ -21,7 +22,7 @@ class InvitationsController < ApplicationController
           recipient_email: email,
           status: 'pending'
         )
-        Mailer.invitation_notification(invitation, form.comment).deliver_now
+        Mailer.invitation_notification(invitation.id, form.comment).deliver_later
       end
 
       redirect_to new_invitation_path(@report), notice: 'Invitation successfully sent'
