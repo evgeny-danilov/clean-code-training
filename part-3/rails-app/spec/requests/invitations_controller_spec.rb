@@ -15,11 +15,13 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
   describe 'POST' do
     it 'renders a page with errors' do
       report = Report.create
+      invitation_params = { comment: '', recipients: '' }
 
-      post '/invitations', params: { report_id: report.id }
+      post '/invitations', params: { report_id: report.id, invitation: invitation_params }
 
       expect(response.status).to eq(200)
-      expect(response.body).to include('Please provide a comment', 'Invalid email addresses')
+      expect(response.body).to include('Invalid email addresses')
+      expect(response.body).to include('Please provide a comment')
     end
 
     context 'when params are valid' do
@@ -41,7 +43,7 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
         post '/invitations', params: { report_id: report.id, invitation: invitation_params }
 
         expect(response.status).to eq(200)
-        expect(response.body).to include("Invalid email addresses:\nmy_mail", 'a comment')
+        expect(response.body).to include("Invalid email addresses: my_mail", 'a comment')
         expect(response.body).to include("\ntest@mail.com, my_mail")
       end
     end

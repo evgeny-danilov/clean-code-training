@@ -6,14 +6,14 @@ class InvitationsController < ApplicationController
   def new
     @report = Report.find(params[:report_id])
 
-    render :new, locals: { form: form, form_errors: nil }
+    render :new, locals: { object: form.result_object }
   end
 
   def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @report = Report.find(params[:report_id])
-    validation = form.validation
+    result = form.result_object(validate: true)
 
-    if validation.success?
+    if result.validation.success?
       form.recipients.each do |email|
         invitation = Invitation.create(
           report: @report,
@@ -26,7 +26,7 @@ class InvitationsController < ApplicationController
 
       redirect_to new_invitation_path(@report), notice: 'Invitation successfully sent'
     else
-      render :new, locals: { form: form, form_errors: validation }
+      render :new, locals: { object: result }
     end
   end
 
