@@ -17,6 +17,7 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
       report = Report.create
       invitation_params = { comment: '', recipients: '' }
 
+      expect(Invitation).not_to receive(:create)
       expect {
         post '/invitations', params: { report_id: report.id, invitation: invitation_params }
       }.not_to have_enqueued_job
@@ -31,6 +32,7 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
         report = Report.create
         invitation_params = { comment: 'a comment', recipients: 'test@mail.com' }
 
+        expect(Invitation).to receive(:create).and_call_original
         expect {
           post '/invitations', params: { report_id: report.id, invitation: invitation_params }
         }.to have_enqueued_job.on_queue('default')
@@ -44,6 +46,7 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
         report = Report.create
         invitation_params = { comment: 'a comment', recipients: 'test@mail.com, my_mail' }
 
+        expect(Invitation).not_to receive(:create)
         expect {
           post '/invitations', params: { report_id: report.id, invitation: invitation_params }
         }.not_to have_enqueued_job

@@ -1,39 +1,24 @@
 # frozen_string_literal: true
 
 class InvitationsController < ApplicationController
-  EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.freeze
-
   def new
     @report = Report.find(params[:report_id])
 
-    render :new, locals: { object: form.result_object }
+    render :new, locals: { object: form }
   end
 
-  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  def create
     @report = Report.find(params[:report_id])
+    InvitationService::Sender.new(form: form, current_user: current_user, report: @report).call
 
-    result = form.result_object(validate: true)
-
-    if result.validation.success?
-      form.recipients.each do |email|
-        invitation = Invitation.create(
-          report: @report,
-          sender: current_user,
-          recipient_email: email,
-          status: 'pending'
-        )
-        Mailer.invitation_notification(invitation.id, form.comment).deliver_later
-      end
-
-      redirect_to new_invitation_path(@report), notice: 'Invitation successfully sent'
-    else
-      render :new, locals: { object: result }
-    end
+    redirect_to new_invitation_path(@report), notice: 'Invitation successfully sent'
+  rescue InvitationForm::InvalidError => e
+    render :new, locals: { object: e.form_with_errors }
   end
 
   private
 
   def form
-    @form ||= InvitationForm.new(params[:invitation].to_h.symbolize_keys)
+    InvitationForm.new(params[:invitation].to_h.symbolize_keys)
   end
 end

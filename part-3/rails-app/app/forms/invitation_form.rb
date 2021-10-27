@@ -4,7 +4,7 @@ module Types
   include Dry.Types()
 end
 
-class InvitationForm < Dry::Struct 
+class InvitationForm < Dry::Struct
   RecipientsType = Types::Array.constructor do |input|
     input.split(/[\n,;]+/).map(&:strip).reject(&:blank?)
   end
@@ -30,9 +30,19 @@ class InvitationForm < Dry::Struct
   end
 
   # DSL, can be implemented as a mixin
-  def result_object(validate: false)
-    validation = schema.call(attributes) if validate
-    ResultWithErrors.new(form: self, validation: validation)
+  def validate!
+    validation = schema.call(attributes)
+    return if validation.success?
+
+    raise InvalidError.new(ResultWithErrors.new(form: self, validation: validation))
+  end
+
+  class InvalidError < StandardError
+    def initialize(form_with_errors)
+      @form_with_errors = form_with_errors
+      super('Form is invalid')
+    end
+    attr_reader :form_with_errors
   end
 
   # In case of using Simple Form gem it's required to have ActiveModel-like object with errors
