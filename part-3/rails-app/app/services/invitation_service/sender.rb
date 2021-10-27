@@ -2,8 +2,8 @@
 
 module InvitationService
   class Sender
-    def initialize(form:, current_user:, report:)
-      @form = form
+    def initialize(params:, current_user:, report:)
+      @params = params
       @report = report
       @current_user = current_user
     end
@@ -16,7 +16,7 @@ module InvitationService
 
     private
 
-    attr_reader :form, :current_user, :report
+    attr_reader :params, :current_user, :report
 
     def batch_send_invitations
       form.recipients.each do |email|
@@ -36,6 +36,10 @@ module InvitationService
 
     def notify_recipient(invitation)
       Mailer.invitation_notification(invitation.id, form.comment).deliver_later
+    end
+
+    def form
+      @form ||= Form.new(params)
     end
   end
 end

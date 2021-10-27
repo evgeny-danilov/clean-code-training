@@ -4,7 +4,9 @@ module Types
   include Dry.Types()
 end
 
-class InvitationForm < Dry::Struct
+module InvitationService; end
+
+class InvitationService::Form < Dry::Struct
   RecipientsType = Types::Array.constructor do |input|
     input.split(/[\n,;]+/).map(&:strip).reject(&:blank?)
   end
