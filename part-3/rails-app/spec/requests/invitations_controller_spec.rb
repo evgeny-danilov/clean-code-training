@@ -18,9 +18,9 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
       invitation_params = { comment: '', recipients: '' }
 
       expect(Invitation).not_to receive(:create)
-      expect {
+      expect do
         post '/invitations', params: { report_id: report.id, invitation: invitation_params }
-      }.not_to have_enqueued_job
+      end.not_to have_enqueued_job
 
       expect(response.status).to eq(200)
       expect(response.body).to include('Invalid email addresses')
@@ -33,9 +33,9 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
         invitation_params = { comment: 'a comment', recipients: 'test@mail.com' }
 
         expect(Invitation).to receive(:create).and_call_original
-        expect {
+        expect do
           post '/invitations', params: { report_id: report.id, invitation: invitation_params }
-        }.to have_enqueued_job.on_queue('default')
+        end.to have_enqueued_job.on_queue('default')
 
         expect(response.status).to eq(302)
       end
@@ -47,12 +47,12 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
         invitation_params = { comment: 'a comment', recipients: 'test@mail.com, my_mail' }
 
         expect(Invitation).not_to receive(:create)
-        expect {
+        expect do
           post '/invitations', params: { report_id: report.id, invitation: invitation_params }
-        }.not_to have_enqueued_job
+        end.not_to have_enqueued_job
 
         expect(response.status).to eq(200)
-        expect(response.body).to include("Invalid email addresses: my_mail", 'a comment')
+        expect(response.body).to include('Invalid email addresses: my_mail', 'a comment')
         expect(response.body).to include("\ntest@mail.com, my_mail")
       end
     end

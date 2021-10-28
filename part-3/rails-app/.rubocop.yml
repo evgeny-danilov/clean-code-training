@@ -3,6 +3,14 @@ require:
   - rubocop-rspec
 Style/Documentation:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MessageSpies:
+  Enabled: false
 AllCops:
   NewCops: enable
-

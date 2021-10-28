@@ -10,7 +10,7 @@ module InvitationService
 
     def call
       form.validate!
-      
+
       batch_send_invitations
     end
 
