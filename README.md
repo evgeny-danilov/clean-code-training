@@ -86,22 +86,24 @@ There are a lot of solutions and examples. Check out [one of them](https://githu
 
 In a contrary, another solution shows adding more variables to reduce less-readable functional styling. Check the [second example](https://github.com/jmelkor/clean-code-training/compare/ex9b-reduce-functional-styling?diff=split) - after this refactoring we get more expressive elements, and it gives us the possibility to debug the code in a more convenient way.
 
+
 ## PART 2 - DESIGN PATTERNS
 
 ...coming soon
+
 
 ## PART 3 - RAILS APP DESIGN
 
 The most common way to refactor Rails apps is hidden functionality to models, callbacks and concerns. Check out our [BAD EXAMPLE of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with more that 5000 lines in models and dozens of mixins with circle dependencies. And further extracting the functionality to separate services becomes almost impossible. 
 
-If you are doubt where to put business logic, it's better to keet it in controllers. At least, it will be much easier to extract the functionality to separate well-organized services and modules. 
+If you are in doubt where to put business logic, it's better to keep it in controllers. At least, it will be much easier to extract the functionality to separate well-organized services and modules. 
 
-We have [basic example](https://github.com/jmelkor/clean-code-training/tree/main/part-3/app), which has exacty the same -- all the logic places in the controller. However, this controller is overload and violates SOLID principles. So, let's try to refactor it step-by-step:
+We have a basic example, which has exactly this -- all the logic places in the controller. However, this controller is overloaded and violates SOLID principles. Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ror-refactoring?diff=split), or review changes commit-by-commit with [this PR](https://github.com/jmelkor/clean-code-training/pull/1/commits), from top to bottom.
 
-Step #1: Extract presentation logic in view context. Check out [feature branch changes](TODO)
-
-TODO: https://nshki.com/giving-ruby-objects-access-to-rails-view-methods/
-
+Techniques, that were applied there:
+- Service Objects: with PORO objects
+- Form Objects: with dry-struct and dry-validation libraries
+- Error Handling: with both exceptions and dry-monads
 
 # Links
 
@@ -111,3 +113,8 @@ TODO: https://nshki.com/giving-ruby-objects-access-to-rails-view-methods/
 4. [Confident Ruby](https://pragprog.com/titles/agcr/confident-ruby/) by Avdi Grimm
 5. [Practical Object-Oriented Design (2nd edition)](https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1)  by Sandy Meiz
 6. [The Local Variable Aversion Antipattern](https://www.soulcutter.com/articles/local-variable-aversion-antipattern.html)
+
+Part 3
+1. [dry-struct](https://dry-rb.org/gems/dry-struct/), [dry-validation](https://dry-rb.org/gems/dry-validation/) and [dry-monads](https://dry-rb.org/gems/dry-monads/) libraries
+4. [Error handling with monads in Ruby](http://nywkap.com/programming/either-monads-ruby.html)
+5. [Using View Contexts in Rails views](https://nshki.com/giving-ruby-objects-access-to-rails-view-methods/)
