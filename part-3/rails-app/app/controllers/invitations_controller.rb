@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class InvitationsController < ApplicationController
+  include Dry::Monads[:result]
+
   def new
     @report = Report.find(params[:report_id])
 
@@ -9,11 +11,13 @@ class InvitationsController < ApplicationController
 
   def create
     @report = Report.find(params[:report_id])
-    InvitationService::Sender.new(params: invitation_params, current_user: current_user, report: @report).call
+    service = InvitationService::Sender.new(params: invitation_params, current_user: current_user, report: @report)
 
-    redirect_to new_invitation_path(@report), notice: 'Invitation successfully sent'
-  rescue InvitationService::Form::InvalidError => e
-    render :new, locals: { object: e.form_with_errors }
+    service.call.bind do
+      Success redirect_to(new_invitation_path(@report), notice: 'Invitation successfully sent')
+    end.or do |failure|
+      render(:new, locals: { object: failure })
+    end
   end
 
   private

@@ -12,6 +12,7 @@ gem 'rails', '~> 6.1.0'
 gem 'sass-rails', '>= 6'
 gem 'sqlite3', '~> 1.4'
 
+gem 'dry-monads'
 gem 'dry-struct'
 gem 'dry-validation'
 gem 'haml'

@@ -2,6 +2,8 @@
 
 module InvitationService
   class Sender
+    include Dry::Monads[:result]
+
     def initialize(params:, current_user:, report:)
       @params = params
       @report = report
@@ -9,9 +11,9 @@ module InvitationService
     end
 
     def call
-      form.validate!
-
-      batch_send_invitations
+      form.validate!.bind do
+        Success(batch_send_invitations)
+      end
     end
 
     private
