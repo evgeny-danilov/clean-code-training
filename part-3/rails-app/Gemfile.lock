@@ -297,6 +297,7 @@ DEPENDENCIES
   dry-monads
   dry-struct
   dry-validation
+  factory_bot
   factory_bot_rails
   faker
   haml

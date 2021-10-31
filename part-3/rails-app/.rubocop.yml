@@ -14,5 +14,7 @@ RSpec/ExampleLength:
   Enabled: false
 RSpec/MessageSpies:
   Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
 AllCops:
   NewCops: enable
