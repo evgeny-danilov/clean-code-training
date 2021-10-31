@@ -30,7 +30,8 @@ RSpec.describe InvitationService::Sender, aggregate_failures: true do
       it 'creates an invitation and return the list of invalid emails' do
         expect { subject }.to(
           change(Invitation, :count).by(1).and(
-            have_enqueued_mail(Mailer, :invitation_notification).twice
+            have_enqueued_mail(Mailer, :invitation_notification)
+            # Removed `twice` -- looks like it was a bug.
           )
         )
 

@@ -12,7 +12,7 @@ module InvitationService
 
     def call
       form.validate!.bind do
-        Success(batch_send_invitations)
+        Success(batch_send_invitations.tap { after_commit_callback })
       end
     end
 
@@ -22,6 +22,8 @@ module InvitationService
 
     def batch_send_invitations
       form.recipients.each do |email|
+        next if Invitation.exists?(report: report, recipient_email: email)
+
         invitation = create_invitation(email)
         notify_recipient(invitation)
       end
@@ -38,6 +40,10 @@ module InvitationService
 
     def notify_recipient(invitation)
       Mailer.invitation_notification(invitation.id, form.comment).deliver_later
+    end
+
+    def after_commit_callback
+      report.activate!
     end
 
     def form
