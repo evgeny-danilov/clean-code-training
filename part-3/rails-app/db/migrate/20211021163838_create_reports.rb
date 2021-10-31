@@ -2,6 +2,10 @@
 
 class CreateReports < ActiveRecord::Migration[6.1]
   def change
-    create_table :reports, &:timestamps
+    create_table :reports do |t|
+      t.boolean :active
+
+      t.timestamps
+    end
   end
 end

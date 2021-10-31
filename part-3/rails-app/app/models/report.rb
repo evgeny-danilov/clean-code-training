@@ -2,6 +2,10 @@
 
 class Report < ApplicationRecord
   has_many :invitations
+
+  def activate!
+    update(active: true)
+  end
 end
 
 # == Schema Info
@@ -9,4 +13,5 @@ end
 # Table name: reports
 #
 #  id                  :integer(11)    not null, primary key
+#  active              :boolean
 #

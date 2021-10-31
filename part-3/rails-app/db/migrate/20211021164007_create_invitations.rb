@@ -9,6 +9,8 @@ class CreateInvitations < ActiveRecord::Migration[6.1]
       t.string :status
 
       t.timestamps
+
+      t.index %i[report_id recipient_email], unique: true
     end
   end
 end

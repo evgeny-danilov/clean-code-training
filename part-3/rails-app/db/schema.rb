@@ -20,11 +20,13 @@ ActiveRecord::Schema.define(version: 2021_10_21_164238) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["report_id", "recipient_email"], name: "index_invitations_on_report_id_and_recipient_email", unique: true
     t.index ["report_id"], name: "index_invitations_on_report_id"
     t.index ["sender_type", "sender_id"], name: "index_invitations_on_sender"
   end
 
   create_table "reports", force: :cascade do |t|
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
