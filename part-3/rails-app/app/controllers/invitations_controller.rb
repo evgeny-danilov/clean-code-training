@@ -4,17 +4,15 @@ class InvitationsController < ApplicationController
   include Dry::Monads[:result]
 
   def new
-    @report = Report.find(params[:report_id])
-
     render :new, locals: { page: page, object: NullForm.new(invalid_recipients: []) }
   end
 
   def create
-    @report = Report.find(params[:report_id])
-    service = InvitationService::Sender.new(params: invitation_params, current_user: current_user, report: @report)
+    report_id = page.report_id
+    service = InvitationService::Action.new(params: invitation_params, current_user: current_user, report_id: report_id)
 
     service.call.bind do
-      Success redirect_to(new_invitation_path(@report), notice: 'Invitation successfully sent')
+      Success redirect_to(new_invitation_path(report_id), notice: 'Invitation successfully sent')
     end.or do |failure|
       render(:new, locals: { page: page, object: failure })
     end

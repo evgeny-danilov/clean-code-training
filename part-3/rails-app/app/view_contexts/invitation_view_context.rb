@@ -14,11 +14,11 @@ class InvitationViewContext
     end
   end
 
-  private
-
-  attr_reader :view_context, :current_user
-
   def report_id
     view_context.params[:report_id]
   end
+
+  private
+
+  attr_reader :view_context, :current_user
 end

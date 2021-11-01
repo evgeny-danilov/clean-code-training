@@ -42,10 +42,7 @@ module InvitationService
 
     # In case of using Simple Form gem it's required to have ActiveModel-like object with errors
     class ResultWithErrors
-      include ActiveModel::Model
       include ActiveModel::Validations
-
-      attr_reader :validation
 
       def initialize(form:, validation:)
         @form = form
@@ -54,11 +51,11 @@ module InvitationService
         add_errors if validation.present?
       end
 
+      delegate_missing_to :form
+
       private
 
-      attr_reader :form
-
-      delegate_missing_to :form
+      attr_reader :form, :validation
 
       def add_errors
         validation.errors.each do |error|
@@ -72,13 +69,13 @@ module InvitationService
     #
     # class UserController < ApplicationController
     #   def create
-    #     result = form.validate
+    #     result = form.validate!
     #
-    #     if result.validation.success?
+    #     if result.success?
     #       User.create(form.attributes)
     #       redirect_to some_url
     #     else
-    #       render :new, { form: result }
+    #       render :new, { form: result.failure }
     #     end
     #   end
     #
