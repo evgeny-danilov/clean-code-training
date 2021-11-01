@@ -6,7 +6,7 @@ class InvitationsController < ApplicationController
   def new
     @report = Report.find(params[:report_id])
 
-    render :new, locals: { object: NullForm.new(invalid_recipients: []) }
+    render :new, locals: { page: page, object: NullForm.new(invalid_recipients: []) }
   end
 
   def create
@@ -16,7 +16,7 @@ class InvitationsController < ApplicationController
     service.call.bind do
       Success redirect_to(new_invitation_path(@report), notice: 'Invitation successfully sent')
     end.or do |failure|
-      render(:new, locals: { object: failure })
+      render(:new, locals: { page: page, object: failure })
     end
   end
 
@@ -24,5 +24,9 @@ class InvitationsController < ApplicationController
 
   def invitation_params
     params[:invitation].to_h.symbolize_keys
+  end
+
+  def page
+    @page ||= InvitationViewContext.new(view_context, current_user: current_user)
   end
 end

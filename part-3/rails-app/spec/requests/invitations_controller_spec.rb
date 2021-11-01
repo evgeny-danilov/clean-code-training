@@ -9,6 +9,7 @@ RSpec.describe InvitationsController, type: :request, aggregate_failures: true d
 
       get "/invitations/new?report_id=#{report.id}"
       expect(response).to be_successful
+      expect(response.body).to include('View Report')
     end
   end
 

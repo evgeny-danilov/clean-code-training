@@ -6,8 +6,4 @@
   = f.submit 'Notify Recipients'
 
 %footer
-  - current_user = User.find_by(id: session[:user_id])
-  - if current_user&.admin?
-    = link_to 'View Report', admin_report_path(@report)
-  - else
-    = link_to 'View Report', report_path(@report)
+  = page.view_report_link
