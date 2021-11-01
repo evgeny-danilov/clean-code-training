@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe InvitationService::Sender, aggregate_failures: true do
-  subject { described_class.new(params: invitation_params, current_user: current_user, report: report).call }
+RSpec.describe InvitationService::Action, aggregate_failures: true do
+  subject { described_class.new(params: invitation_params, current_user: current_user, report_id: report.id).call }
 
   let(:current_user) { create(:user) }
   let(:report) { create(:report) }

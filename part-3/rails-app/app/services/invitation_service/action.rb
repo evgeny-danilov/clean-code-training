@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module InvitationService
-  class Sender
+  class Action
     include Dry::Monads[:result]
 
-    def initialize(params:, current_user:, report:)
+    def initialize(params:, current_user:, report_id:)
       @params = params
-      @report = report
+      @report_id = report_id
       @current_user = current_user
     end
 
@@ -18,7 +18,7 @@ module InvitationService
 
     private
 
-    attr_reader :params, :current_user, :report
+    attr_reader :params, :current_user, :report_id
 
     def batch_send_invitations
       form.recipients.each do |email|
@@ -44,6 +44,10 @@ module InvitationService
 
     def after_commit_callback
       report.activate!
+    end
+
+    def report
+      Report.find(report_id)
     end
 
     def form
