@@ -114,7 +114,9 @@ Techniques, that were applied there:
 5. [Practical Object-Oriented Design (2nd edition)](https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1)  by Sandy Meiz
 6. [The Local Variable Aversion Antipattern](https://www.soulcutter.com/articles/local-variable-aversion-antipattern.html)
 
-Part 3
+#### Part 3
 1. [dry-struct](https://dry-rb.org/gems/dry-struct/), [dry-validation](https://dry-rb.org/gems/dry-validation/) and [dry-monads](https://dry-rb.org/gems/dry-monads/) libraries
-4. [Error handling with monads in Ruby](http://nywkap.com/programming/either-monads-ruby.html)
-5. [Using View Contexts in Rails views](https://nshki.com/giving-ruby-objects-access-to-rails-view-methods/)
+2. [Error handling with monads in Ruby](http://nywkap.com/programming/either-monads-ruby.html)
+3. [Using View Contexts in Rails views](https://nshki.com/giving-ruby-objects-access-to-rails-view-methods/)
+
+* Another way to [untagle your code with Service Objects](https://hanamimastery.com/episodes/7-untangle-your-app-with-dry-monads)
