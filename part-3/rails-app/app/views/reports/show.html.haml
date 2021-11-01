@@ -1,0 +1,12 @@
+%h1= "Report ##{@report.id}"
+
+%table
+  %tr
+    %th ID
+    %th Recipients
+    %th Sender
+  - @report.invitations.each do |invitation|
+    %tr
+      %td= invitation.id
+      %td= invitation.displayed_recipients
+      %td= invitation.sender_name

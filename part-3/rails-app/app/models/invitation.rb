@@ -14,6 +14,14 @@ class Invitation < ApplicationRecord
   #  - what happens if creating failed?
   #  - should we handle somehow failed transations?
 
+  def sender_name
+    sender&.name || 'unknown'
+  end
+
+  def displayed_recipients
+    recipient_email if report.active?
+  end
+
   private
 
   def update_report
