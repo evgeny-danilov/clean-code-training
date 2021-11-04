@@ -7,7 +7,7 @@ class InvitationViewContext
   end
 
   def view_report_link
-    if current_user&.admin?
+    if current_user.present? && current_user.admin?
       view_context.link_to('View Report', view_context.admin_report_path(report_id))
     else
       view_context.link_to('View Report', view_context.report_path(report_id))

@@ -3,14 +3,6 @@
 class Invitation < ApplicationRecord
   belongs_to :sender, class_name: 'User'
   belongs_to :report
-
-  def sender_name
-    sender&.name || 'unknown'
-  end
-
-  def displayed_recipients
-    recipient_email if report.active?
-  end
 end
 
 # == Schema Info

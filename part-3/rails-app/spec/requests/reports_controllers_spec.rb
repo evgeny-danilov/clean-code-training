@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReportsController, type: :request do
+RSpec.describe ReportsController, type: :request, aggregate_failures: true do
   describe 'SHOW' do
     it 'renders a page' do
       user = User.create(name: 'First User')
