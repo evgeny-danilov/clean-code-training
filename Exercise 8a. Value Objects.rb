@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class GetPendingOrders
+  Order = Struct.new(:date, :time, :address, keyword_init: true)
+
   def call
     api_response.map do |row|
-      {
-        date: format_date(row[:date]),
-        time: format_time(row[:time]),
-        address: row[:address].strip
-      }
+      Order.new(
+        date: row.fetch(:date),
+        time: row.fetch(:time),
+        address: row.fetch(:address)
+      ).freeze # that is important to freeze an object, because Structs are mutable by default
     end
   end
 
@@ -16,23 +18,15 @@ class GetPendingOrders
   def api_response
     JSON.parse(HTTParty.get('api.server.com/get_orders?status=pending'))
   end
-
-  def format_date(date)
-    Date.parse(date).strftime('%Y/%d/%m')
-  end
-
-  def format_time(time)
-    Time.parse(time).strftime('%H:%M')
-  end
 end
 
 class SendPendingOrdersNotificationWorker
   def perform
     pendeing_orders.each do |order|
       PendingOrdersNotificationMailer.new(
-        order_date: order[:date],
-        order_time: order[:time],
-        client_address: order[:address]
+        order_date: order.date,
+        order_time: order.time,
+        client_address: order.address
       ).deliver_later
     end
   end
