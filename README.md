@@ -66,17 +66,19 @@ Keep in mind that having mixins is almost always not a good idea, because it bri
 
 Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex7-mixins-refactoring?diff=split)
 
-## Exercise #8: Form Objects
+## Exercise #8: Value Objects
 
-Value Objects provide the way to compact input params into one single Ruby object (PORO). An evolution of Value Objects are Form Objects. They provide more features to validate params and form error messages. Sometimes Form Objects include saving objects in DB, but we consider it as bad practice (working with DB is actually the area of Repositories / Query Objects).
+Value Objects provide the way to compact data into one single Ruby object (PORO). The simlest example is 3D-point, which contains three parameters (:x, :y, :z). Value Objects can be useful when we want to pass some data structure from one object to another. Another use case is refactoring of a long list of parameters by using Value Objects. For more information about benefits of Value Objects check out [Primitive Obsession](https://refactoring.guru/smells/primitive-obsession) article, and [video with the description](https://thoughtbot.com/upcase/videos/value-objects) from Thoughtbot.
 
-So, Form Objects could be useful for:
-- receiving inputs from web-forms
-- parsing date from outside and generating the result
-- communication between internal domains or external microservices
-- transferring the set of parameters between classes within a domain / feature
+Value Objects are usually immutable, so as to prevent possible bugs and side effects. Sometimes it is also useful to make Value Objects comparable, as if they were Primitive Ruby objects (TODO: check eng in this sentence). 
 
-Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex8a-form-objects?diff=split)
+There are a few different implementations, including `ActiveModel` and `dry-struct`. Unfortunately, `OpenStruct` is the worth choice among others and was not considered, because OpenStruct does not defend us from typos and misplittings (in fact, any missing method of OpenStruct returns `nil`).
+
+All considered below implementations of Value Objects supports serialization (by `#as_json` method), so that we can pass Value Objects to background jobs, mailers, or APIs. However, only `dry-struct` with JSON types provides the most solid solution for deserialization Values back.
+
+Solution: Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex8a-value-objects?diff=split). 
+
+
 
 ## Exercise #9: Prefer Simple code over Beautiful one
 
@@ -94,16 +96,19 @@ In a contrary, another solution shows adding more variables to reduce less-reada
 
 ## PART 3 - RAILS APP DESIGN
 
-The most common way to refactor Rails apps is hidden functionality to models, callbacks and concerns. Check out our [BAD EXAMPLE of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with more that 5000 lines in models and dozens of mixins with circle dependencies. And further extracting the functionality to separate services becomes almost impossible. 
+The most common way to refactor Rails apps is hidden functionality to models, callbacks and concerns. Check out our [BAD EXAMPLE of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with more that 1000 lines in models and dozens of mixins with circular dependencies, when further changes become almost impossible (and here we come, we've got legacy code). 
 
 If you are in doubt where to put business logic, it's better to keep it in controllers. At least, it will be much easier to extract the functionality to separate well-organized services and modules. 
 
-We have a basic example, which has exactly this -- all the logic places in the controller. However, this controller is overloaded and violates SOLID principles. Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ror-refactoring?diff=split), or review changes commit-by-commit with [this PR](https://github.com/jmelkor/clean-code-training/pull/1/commits), from top to bottom.
+There is a [simple example](https://github.com/jmelkor/clean-code-training/tree/main/part-3/rails-app) where all the logic is placed in controllers. However, this controller is overloaded and violates SOLID principles. 
 
-Techniques, that were applied there:
+Solution: Check out changes [commit-by-commit](https://github.com/jmelkor/clean-code-training/pull/1/commits).
+
+Techniques that were applied:
 - Service Objects: with PORO objects
-- Form Objects: with dry-struct and dry-validation libraries
-- Error Handling: with both exceptions and dry-monads
+- Form Objects: with `dry-struct` and `dry-validation` libraries
+- Error Handling: with both `exceptions` and ``dry-monads`
+- Presenters and View Contexts
 
 # Links
 
