@@ -96,11 +96,11 @@ In a contrary, another solution shows adding more variables to reduce less-reada
 
 ## PART 3 - RAILS APP DESIGN
 
-The most common way to refactor Rails apps is hidden functionality to models, callbacks and concerns. Check out our [BAD EXAMPLE of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with more that 1000 lines in models and dozens of mixins with circular dependencies, when further changes become almost impossible (and here we come, we've got legacy code). 
+The most common way to refactor Rails apps is hidden functionality to models, callbacks and concerns. Check out [BAD EXAMPLE of refactoring](https://github.com/jmelkor/clean-code-training/compare/cd2fb20fd993..ror-ex1a-bad-refactoring?diff=split). With this approach, we are very likely to end up with more that 1000 lines in models and dozens of mixins with circular dependencies, when further changes become almost impossible. So, ultimately we'll get a legacy code.
 
 If you are in doubt where to put business logic, it's better to keep it in controllers. At least, it will be much easier to extract the functionality to separate well-organized services and modules. 
 
-There is a [simple example](https://github.com/jmelkor/clean-code-training/tree/main/part-3/rails-app) where all the logic is placed in controllers. However, this controller is overloaded and violates SOLID principles. 
+In this [simple example](https://github.com/jmelkor/clean-code-training/tree/main/part-3/rails-app) we have all the logic placed in controllers. This is a good start. However, controller is overloaded and violates SOLID principles. So, let's try to make some refactoring here.
 
 Solution: Check out changes [commit-by-commit](https://github.com/jmelkor/clean-code-training/pull/1/commits).
 
