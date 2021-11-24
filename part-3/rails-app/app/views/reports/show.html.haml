@@ -5,7 +5,7 @@
     %th ID
     %th Recipients
     %th Sender
-  - @report.invitations.each do |invitation|
+  - @report_invitations.each do |invitation|
     %tr
       %td= invitation.id
       %td= invitation.displayed_recipients
