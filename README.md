@@ -44,6 +44,8 @@ Example #2: [Extract Conditions](https://github.com/jmelkor/clean-code-training/
 
 Example #3: [Replace `if` statements with guard clause](https://github.com/jmelkor/clean-code-training/compare/ex4c-remove-if-statements?diff=split)
 
+In addition, check this nice presentation from Sandy Metz: https://www.youtube.com/watch?v=x1wnI0AxpEU
+
 ## Exercise #5: Depenedency Injection
 
 This technique is that we don't hardcode dependencies, but pass them as parameters into the class. By applying Dependency Injection we satisfy the Open-Close principle, and make the code loose couplied, e.g. more flexible in terms of changing the behaviour.
