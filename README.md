@@ -120,6 +120,7 @@ Techniques that were applied:
 4. [Confident Ruby](https://pragprog.com/titles/agcr/confident-ruby/) by Avdi Grimm
 5. [Practical Object-Oriented Design (2nd edition)](https://www.amazon.com/gp/product/B07F88LY9M/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i1)  by Sandy Meiz
 6. [The Local Variable Aversion Antipattern](https://www.soulcutter.com/articles/local-variable-aversion-antipattern.html)
+7. [Ruby on Ales 2014 All The Little Things by Sandi Metz](https://www.youtube.com/watch?v=x1wnI0AxpEU)
 
 #### Part 3
 1. [dry-struct](https://dry-rb.org/gems/dry-struct/), [dry-validation](https://dry-rb.org/gems/dry-validation/) and [dry-monads](https://dry-rb.org/gems/dry-monads/) libraries
