@@ -74,7 +74,7 @@ Value Objects provide the way to compact data into one single Ruby object (PORO)
 
 Value Objects are usually immutable, so as to prevent possible bugs and side effects. Sometimes it is also useful to make Value Objects comparable, as if they were Primitive Ruby objects (TODO: check eng in this sentence). 
 
-There are a few different implementations, including `ActiveModel` and `dry-struct`. Unfortunately, `OpenStruct` is the worth choice among others and was not considered, because OpenStruct does not defend us from typos and misplittings (in fact, any missing method of OpenStruct returns `nil`).
+There are a few different implementations, including `ActiveModel` and `dry-struct`. Unfortunately, `OpenStruct` is the worth choice among others, because it does not defend us from typos and misplittings (in fact, any missing method of OpenStruct returns `nil`).
 
 All considered below implementations of Value Objects supports serialization (by `#as_json` method), so that we can pass Value Objects to background jobs, mailers, or APIs. However, only `dry-struct` with JSON types provides the most solid solution for deserialization Values back.
 
@@ -89,6 +89,14 @@ Short and beautiful code doesn't always mean it will be expressive and maintaina
 There are a lot of solutions and examples. Check out [one of them](https://github.com/jmelkor/clean-code-training/compare/ex9a-simplicitly-over-beauty?diff=split) - after this refactoring there are less variables, and we return from the method as soon as possible.
 
 In a contrary, another solution shows adding more variables to reduce less-readable functional styling. Check the [second example](https://github.com/jmelkor/clean-code-training/compare/ex9b-reduce-functional-styling?diff=split) - after this refactoring we get more expressive elements, and it gives us the possibility to debug the code in a more convenient way.
+
+## Exercise #10: Get rid of instance variables
+
+A lot of instance variables gives us a **"spaghetti code"**, harder to follow and understand. Ultimately, it'll lead us to the stage where code readers won't be able to catch and predict values of some instance variables. 
+Moreover, any change in such "spaghetti code" has an effect on the rest of the class.
+On the contrary, the **functional style of programming** provides the code that is executed in a one direction, from top to the bottom of the code.
+
+Check out [feature branch changes](https://github.com/jmelkor/clean-code-training/compare/ex10-get-rid-of-instance-variables?diff=split).
 
 
 ## PART 2 - DESIGN PATTERNS

@@ -6,3 +6,5 @@
 /part-3/rails-app/config/master.key
 /part-3/rails-app/.byebug_history
 
+.DS_Store
+.idea
