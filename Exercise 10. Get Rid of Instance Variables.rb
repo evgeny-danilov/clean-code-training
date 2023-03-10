@@ -22,30 +22,26 @@ module JWT
       private
 
       def resolve_key(kid)
-        jwk = find_key(kid)
+        jwk = find_key(kid, jwks)
+        # NOTE: it's always better to pass variables directly in the method, instead of relying on randomly mutable instance variables inside
 
         return jwk if jwk
 
-        if reloadable?
-          load_keys(invalidate: true)
-          return find_key(kid)
-        end
+        return find_key(kid, load_keys(invalidate: true)) if reloadable?
 
         nil
       end
 
       def jwks
-        return @jwks if @jwks
-
-        load_keys
-        @jwks
+        @jwks ||= load_keys
+        # NOTE: as for now, we use instance variable only for memoization, and don't use it in other places
       end
 
       def load_keys(opts = {})
-        @jwks = @jwk_loader.call(opts)
+        @jwk_loader.call(opts)
       end
 
-      def find_key(kid)
+      def find_key(kid, jwks)
         Array(jwks[:keys]).find { |key| key[:kid] == kid }
       end
 
