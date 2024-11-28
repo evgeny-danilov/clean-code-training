@@ -3,6 +3,18 @@ require:
   - rubocop-rspec
 Style/Documentation:
   Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MessageSpies:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
 AllCops:
   NewCops: enable
-

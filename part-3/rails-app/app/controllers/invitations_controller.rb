@@ -1,61 +1,30 @@
 # frozen_string_literal: true
 
 class InvitationsController < ApplicationController
-  EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.freeze
+  include Dry::Monads[:result]
 
   def new
-    @report = Report.find(params[:report_id])
+    render :new, locals: { page: page, object: NullForm.new(invalid_recipients: []) }
   end
 
-  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-    @report = Report.find(params[:report_id])
+  def create
+    report_id = page.report_id
+    service = InvitationService::Action.new(params: invitation_params, current_user: current_user, report_id: report_id)
 
-    if valid_recipients? && valid_comment?
-      recipient_list.each do |email|
-        invitation = Invitation.create(
-          report: @report,
-          sender: current_user,
-          recipient_email: email,
-          status: 'pending'
-        )
-        Mailer.invitation_notification(invitation, comment).deliver_now
-      end
-
-      redirect_to new_invitation_path(@report), notice: 'Invitation successfully sent'
-    else
-      @recipients = recipients
-      @comment = comment
-      @missing_comment = true unless valid_comment?
-
-      render :new
+    service.call.bind do
+      Success redirect_to(new_invitation_path(report_id), notice: 'Invitation successfully sent')
+    end.or do |failure|
+      render(:new, locals: { page: page, object: failure })
     end
   end
 
   private
 
-  def valid_recipients?
-    invalid_recipients.empty?
+  def invitation_params
+    params[:invitation].to_h.symbolize_keys
   end
 
-  def valid_comment?
-    comment.present?
-  end
-
-  def invalid_recipients
-    @invalid_recipients ||= recipient_list.map do |item|
-      item unless item.match(EMAIL_REGEX)
-    end.compact
-  end
-
-  def recipient_list
-    @recipient_list ||= recipients.to_s.split(/[\n,;]+/).map(&:strip)
-  end
-
-  def recipients
-    params.dig(:invitation, :recipients)
-  end
-
-  def comment
-    params.dig(:invitation, :comment)
+  def page
+    @page ||= InvitationViewContext.new(view_context, current_user: current_user)
   end
 end

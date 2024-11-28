@@ -3,7 +3,7 @@
 class CreateInvitations < ActiveRecord::Migration[6.1]
   def change
     create_table :invitations do |t|
-      t.references :report
+      t.references :report, index: false
       t.references :sender, polymorphic: true
       t.string :recipient_email
       t.string :status

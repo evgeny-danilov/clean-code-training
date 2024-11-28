@@ -1,22 +1,9 @@
-= simple_form_for :invitation, url: invitations_path(@report) do |f|
-  = f.input :comment, as: :text, input_html: { value: @comment }
+= simple_form_for object, as: :invitation, url: invitations_path(page.report_id) do |f|
+  = f.input :comment, as: :text
 
-  - if @missing_comment
-    %div.error
-      Please provide a comment for the report recipients
-
-  = f.input :recipients, as: :text, input_html: { value: @recipients }
-
-  - if @invalid_recipients
-    %div.error
-      Invalid email addresses: 
-      = @invalid_recipients.join(', ')
+  = f.input :recipients, as: :text, input_html: { value: object.recipients&.join(', ') }, error: "Invalid email addresses: #{object.invalid_recipients.join(', ')}"
 
   = f.submit 'Notify Recipients'
 
 %footer
-  - current_user = User.find_by(id: session[:user_id])
-  - if current_user&.admin?
-    = link_to 'View Report', admin_report_path(@report)
-  - else
-    = link_to 'View Report', report_path(@report)
+  = page.view_report_link

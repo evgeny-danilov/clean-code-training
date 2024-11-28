@@ -1,0 +1,6 @@
+en:
+  dry_schema:
+    errors:
+      rules:
+        comment:
+          filled?: Please provide a comment for the report recipients
